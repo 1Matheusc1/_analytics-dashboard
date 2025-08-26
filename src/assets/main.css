@@ -1,0 +1,290 @@
+@import './base.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-secondary-50 text-secondary-900 antialiased;
+    font-feature-settings: 'cv03', 'cv04', 'cv11';
+  }
+
+  *::selection {
+    @apply bg-primary-100 text-primary-900;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Card Components */
+  .card {
+    @apply bg-white rounded-xl shadow-soft border border-secondary-100 overflow-hidden;
+    backdrop-filter: blur(10px);
+  }
+
+  .card-header {
+    @apply px-4 sm:px-6 py-4 border-b border-secondary-100 bg-secondary-50/50;
+  }
+
+  .card-content {
+    @apply p-4 sm:p-6;
+  }
+
+  /* Button System */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+    font-variation-settings: 'wght' 500;
+  }
+
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800 focus:ring-primary-500 shadow-sm hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply btn bg-gradient-to-r from-secondary-100 to-secondary-200 text-secondary-700 hover:from-secondary-200 hover:to-secondary-300 focus:ring-secondary-500 border border-secondary-300;
+  }
+
+  .btn-outline {
+    @apply btn border border-secondary-300 text-secondary-700 hover:bg-secondary-50 focus:ring-secondary-500 hover:border-secondary-400;
+  }
+
+  .btn-danger {
+    @apply btn bg-gradient-to-r from-danger-600 to-danger-700 text-white hover:from-danger-700 hover:to-danger-800 focus:ring-danger-500 shadow-sm hover:shadow-md;
+  }
+
+  .btn-success {
+    @apply btn bg-gradient-to-r from-success-600 to-success-700 text-white hover:from-success-700 hover:to-success-800 focus:ring-success-500 shadow-sm hover:shadow-md;
+  }
+
+  /* Form Elements */
+  .input {
+    @apply block w-full px-3 py-2.5 border border-secondary-300 rounded-lg text-sm placeholder-secondary-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 bg-white;
+  }
+
+  .input:hover {
+    @apply border-secondary-400;
+  }
+
+  .input:focus {
+    @apply shadow-sm;
+  }
+
+  .select {
+    @apply input appearance-none bg-white cursor-pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+  }
+
+  .select:focus {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%233b82f6' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  }
+
+  /* Chart Specific */
+  .chart-container {
+    @apply relative w-full;
+    height: 300px;
+    min-height: 250px;
+  }
+
+  .chart-container canvas {
+    @apply w-full h-full rounded-lg;
+  }
+
+  /* Loading States */
+  .loading-skeleton {
+    @apply animate-pulse bg-secondary-200 rounded;
+  }
+
+  .loading-spinner {
+    @apply animate-spin h-5 w-5 text-primary-600;
+  }
+
+  /* Toast/Alert Components */
+  .toast {
+    @apply fixed bottom-4 right-4 max-w-sm bg-white border border-secondary-200 rounded-lg shadow-strong z-50 p-4;
+  }
+
+  .toast-success {
+    @apply toast border-success-200 bg-success-50;
+  }
+
+  .toast-error {
+    @apply toast border-danger-200 bg-danger-50;
+  }
+
+  .toast-warning {
+    @apply toast border-warning-200 bg-warning-50;
+  }
+
+  .toast-info {
+    @apply toast border-primary-200 bg-primary-50;
+  }
+
+  /* Status Indicators */
+  .status-indicator {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .status-success {
+    @apply status-indicator bg-success-100 text-success-800;
+  }
+
+  .status-error {
+    @apply status-indicator bg-danger-100 text-danger-800;
+  }
+
+  .status-warning {
+    @apply status-indicator bg-warning-100 text-warning-800;
+  }
+
+  .status-info {
+    @apply status-indicator bg-primary-100 text-primary-800;
+  }
+
+  /* Layout Utilities */
+  .container-dashboard {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .grid-responsive {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6;
+  }
+
+  .grid-charts {
+    @apply grid grid-cols-1 xl:grid-cols-2 gap-6;
+  }
+
+  /* Hover Effects */
+  .hover-lift {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+
+  .hover-glow {
+    @apply transition-shadow duration-200 hover:shadow-medium;
+  }
+
+  /* Focus States */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  /* Text Utilities */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  /* Animation delays */
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+
+  /* Safe area padding for mobile */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* Scrollbar Styling */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Global Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-secondary-100 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary-300 rounded-full hover:bg-secondary-400;
+}
+
+::-webkit-scrollbar-corner {
+  @apply bg-secondary-100;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .card {
+    @apply shadow-none border border-secondary-300 break-inside-avoid;
+  }
+
+  .btn {
+    @apply shadow-none;
+  }
+}
+
+/* Dark mode preparation (for future implementation) */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode styles can be added here when needed */
+}
+
+/* Motion reduction for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    @apply border-2 border-secondary-400;
+  }
+
+  .btn {
+    @apply border-2;
+  }
+}
